@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <meta name="description" content="Your recipes gallery">
+  <meta name="author" content="Federico R. Ulbrich">
+
+  <link rel="canonical" href="https://www.eldiletante.com.ar/recipery/">
+  <!-- Facebook and Twitter integration -->
+  <meta property="og:title" content="RECIPERY" />
+  <meta property="og:site_name" content="RECIPERY" />
+  <meta property="og:description" content="Your recipes gallery" />
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="es_LA">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://www.eldiletante.com.ar/recipery/assets/img/press-img.png">
+  <meta property="og:image:width" content="585">
+  <meta property="og:image:height" content="384">
+  <meta property="og:url" content="https://www.eldiletante.com.ar/recipery/">
+  <meta property="og:site_name" content="RECIPERY">
+  <meta property="twitter:title" itemprop="name" property="og:title" content="RECIPERY" />
+  <meta name="twitter:image" content="https://www.eldiletante.com.ar/recipery/assets/img/press-img.png">
+  <meta name="twitter:url" content="https://www.eldiletante.com.ar/recipery/" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@FedeUlbrich">
+  <meta name="twitter:site" content="@FedeUlbrich">
+
+  <meta name="apple-mobile-web-app-title" content="RECIPERY">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="apple-touch-startup-image" href="/assets/img/apple_splash_splash_1242.png">
+
+  <link href="/assets/img/apple_splash_splash_1242.png" sizes="1242x2208" rel="apple-touch-startup-image" />
+  <link rel="icon" type="image/x-icon" href="./assets/img/favicon_favicon.ico">
+  <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png" />
+  <link rel="apple-touch-icon-precomposed" href="icon" />
+  <link rel="manifest" href="manifest.json" type="application/manifest+json">
+
+  <title>RECIPERY</title>
+
+  <!-- Google Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link href="./assets/css/gallery-materialize.min.css" rel="stylesheet">
+
+  <link href="./assets/css/CKEditorStyles.css" rel="stylesheet" type="text/css">
+
+
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+           https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+
+</head>
+
+<body class="blog">
+
+  <!-- Navbar and Header -->
+  <div class="VERIFYaccount"></div>
+  <nav class="nav-extended lime darken-2">
+    <div class="nav-background">
+      <div class="pattern active" style="background-image: url('./assets/img/header.png');">
+      </div>
+    </div>
+    <div class="nav-wrapper container">
+      <a href="" class="brand-logo hide-on-med-and-down" style="display: flex; align-items: center;"><img
+          src="./assets/img/isotipo.png" alt="RECIPERY Isotype" width="46" class="responsive-img" height="36">
+        <h1 class="recipery-h1">RECIPERY
+        </h1>
+      </a>
+      <a href="" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down hover-img-user">
+        <li><a id="UserProfileLabelPhoto" class='dropdown-button' href='#' data-activates='feature-dropdown'
+            data-belowOrigin="true" data-constrainWidth="false"></a></li>
+      </ul>
+      <!-- Dropdown Structure -->
+      <ul id='feature-dropdown' class='dropdown-content'>
+        <li><a class="green-text darken-3">Option</a></li>
+        <li><a class="green-text darken-3">More options</a></li>
+        <li><a class="green-text darken-3">More more options</a></li>
+        <li><a role="button" class="black waves-effect waves-red white-text" onclick="logOut()">LOG OUT<i
+              class="material-icons right">logout</i></a>
+        </li>
+      </ul>
+
+      <div class="nav-header center">
+        <h2>Hi <span class="black-text" id="UserProfileLabel"></span></h2>
+        <div class="tagline black-text">What recipe is going to choose today?</div>
+      </div>
+    </div>
+
+    <!-- Fixed Masonry Filters -->
+    <div class="categories-wrapper black z-depth-3">
+      <div id="nav_filter" class="categories-container">
+        <ul class="categories container black-text">
+          <li class="active"><a href="#all">All <span id="numeroItems"></span></a></li>
+          <li class="active-main-dish"><a class="active-txt-main-dish" href="#main-dish">Main Dish <span
+                id="numeroItemsTagMainDish"></span></a></li>
+          <li class="active-pizza"><a class="active-txt-pizza" href="#pizza">Pizza <span
+                id="numeroItemsTagPizza"></span></a></li>
+          <li class="active-bread"><a class="active-txt-bread" href="#bread">Bread <span
+                id="numeroItemsTagBread"></span></a>
+          </li>
+          <li class="active-dessert"><a class="active-txt-dessert" href="#dessert">Dessert <span
+                id="numeroItemsTagDessert"></span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Navbar -->
+
+  <ul class="side-nav" id="nav-mobile">
+    <a href="#" class="brand-logo center" style="margin-top: 25px;"><img src="./assets/img/isotipo.png"
+        alt="RECIPERY Isotype" width="36" class="responsive-img" height="36" style="float: left;margin-left: 12%;">
+      <h1
+        style="font-family: 'roboto-thin';font-weight: 200;color: #000000;margin: 1.1rem 0 0.98rem 7.7px;font-size: 2.4rem;">
+        RECIPERY
+      </h1>
+    </a>
+    <li class="center" style="margin-bottom: 25px;"><span id="UserProfileMobileLabelPhoto"></span><br />
+      <span class="black-text center" id="UserProfileLabelMail"></span>
+    </li>
+    <span class="badge black white-text">soon</span>
+    <li class="disable"><a><i class="material-icons">settings</i>Options</a> <span
+        class="badge black white-text">soon</span> </li>
+    <li class="disable"><a><i class="material-icons">change_circle</i>Unit converter</a> <span
+        class="badge black white-text">soon</span></li>
+    <li class="disable"><a><i class="material-icons">manage_accounts</i>Account settings</a></li>
+
+    <a role="button" class="btn btn-small black waves-effect z-depth-5 waves-red" onclick="logOut()">LOG OUT</a>
+
+    <a style="position: absolute; bottom: 8%;" href="https://www.eldiletante.com.ar" target="_blank" class="center">
+      <img src="./assets/img/eldiletante.png" alt="RECIPERY Isotype" width="96" class="responsive-img" height=""
+        style="width: 30%;height: 30%;" />
+    </a>
+  </ul>
+
+
+  <!-- BOTÓN NUEVA RECETA -->
+  <div class="fixed-action-btn" id="btn-new-recipe">
+    <button class="btn-floating btn-large waves-effect waves-green green darken-3 z-depth-5">
+      <i class="large material-icons">add</i>
+    </button>
+    <ul>
+      <li><a class="btn-floating pink accent-1 z-depth-3 tooltipped" data-position="left"
+          data-tooltip="Add a new dessert recipe" onclick="addDessert()">🧁</a></li>
+      <li><a class="btn-floating yellow darken-2 z-depth-3 tooltipped" data-position="left"
+          data-tooltip="Add a new pizza recipe" onclick="addPizza()">🍕</a></li>
+      <li><a class="btn-floating blue lighten-1 z-depth-3 tooltipped" data-position="left"
+          data-tooltip="Add a new bread recipe" onclick="addBread()">🍞</a></li>
+      <li><a class="btn-floating white z-depth-3 tooltipped" data-position="left"
+          data-tooltip="Add a new main dish recipe" onclick="addMainDish()">🥘</a></li>
+    </ul>
+  </div>
+
+  <!-- GALERÍA DE RECETAS -->
+
+  <div id="portfolio" class="section">
+    <div class="container">
+      <div class="gallery row" id="listaItems">
+      </div>
+    </div>
+  </div>
+
+  <div id="InstallMessage" style="visibility: hidden;  ">
+    <img src="./assets/img/install.png" alt="install iOS App" width="100%">
+  </div>
+
+
+  <!-- Core Javascript -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="assets/js/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/js/toast.min.js"></script>
+  <script src="assets/js/materialize.js"></script>
+  <script src="assets/js/color-thief.min.js"></script>
+  <script src="assets/js/galleryExpand.js"></script>
+  <script id="reload" src="assets/js/init.js"></script>
+
+  <script src="assets/js/recipery.js"></script>
+  <script src="assets/js/AUTH.js"></script>
+  <script src="assets/js/masonry.pkgd.min.js"></script>
+
+  <script src="assets/js/ckeditor.js"></script>
+
+
+  <script>
+    $(document).ready(function () {
+      $('.tooltipped').tooltip();
+    });
+  </script>
+</body>
+
+</html>

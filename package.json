@@ -1,0 +1,23 @@
+{
+  "name": "recipery",
+  "version": "1.0.0",
+  "description": "Recipes Gallery",
+  "main": "./assets/js/repository-main.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "hammerjs": "^2.0.4",
+    "jquery": "^2.1.4",
+    "node-archiver": "^0.2.0"
+  },
+  "devDependencies": {
+    "jquery": "^2.1.4",
+    "node-sass": "^3.4.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Federico Ulbrich",
+  "license": "MIT"
+}

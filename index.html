@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="description" content="Your recipes gallery">
+    <meta name="author" content="Federico R. Ulbrich">
+
+    <link rel="canonical" href="https://www.eldiletante.com.ar/recipery/">
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content="RECIPERY" />
+    <meta property="og:site_name" content="RECIPERY" />
+    <meta property="og:description" content="Your recipes gallery" />
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="es_LA">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="www.eldiletante.com.ar/recipery/assets/img/press-img.png">
+    <meta property="og:image:width" content="585">
+    <meta property="og:image:height" content="384">
+    <meta property="og:url" content="https://www.eldiletante.com.ar/recipery/">
+    <meta property="og:site_name" content="RECIPERY">
+    <meta property="twitter:title" itemprop="name" property="og:title" content="RECIPERY" />
+    <meta name="twitter:image" content="www.eldiletante.com.ar/recipery/assets/img/press-img.png">
+    <meta name="twitter:url" content="https://www.eldiletante.com.ar/recipery/" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@FedeUlbrich">
+    <meta name="twitter:site" content="@FedeUlbrich">
+
+    <meta name="apple-mobile-web-app-title" content="RECIPERY">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link href="/assets/img/apple_splash_splash_1242.png" sizes="1242x2208" rel="apple-touch-startup-image" />
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon_favicon.ico">
+    <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="icon" />
+    <link rel="manifest" href="manifest.json" type="application/manifest+json">
+
+    <title>RECIPERY</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="./assets/css/" rel="stylesheet">
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="./assets/css/indexSpecialStyles.css">
+    <link rel="stylesheet" href="./assets/css/modalWindow.css">
+</head>
+
+<body>
+    <main>
+        <center>
+            <div style="padding-top: 20px;">
+                <img src="./assets/img/isotipo.png" alt="RECIPERY Isotype" width="46" class="responsive-img"
+                    height="36">
+                <h1
+                    style="font-size: 2em; font-family: 'roboto-thin'; font-weight: 200; color: #000000; margin: 1.1rem 0 0.98rem 7.7px;">
+                    RECIPERY
+                </h1>
+            </div <div class="section">
+            </div>
+
+            <h6 class="indigo-text">Please, login into your account</h6>
+            <div class="section"></div>
+
+            <div class="container">
+                <div class="z-depth-1 grey lighten-4 row"
+                    style="display: inline-block; padding: 32px 22px 0px 22px; border: 1px solid #EEE; min-width: 24rem;">
+
+                    <div class="col s12">
+
+                        <div class='row'>
+                            <div class='input-field col s12'>
+                                <input class='validate' type='email' name='email' id='emailUser' />
+                                <label for='emailUser'>Enter your email</label>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class='input-field col s12'>
+                                <input class='validate' type='password' name='password' id='passwordUser' />
+                                <label for='passwordUser'>Enter your password</label>
+                            </div>
+                            <label style='float: right;'>
+                                <a class='pink-text' role="button" style="cursor:pointer;"
+                                    onclick='modalForgotPassword()'><b>Forgot Password?</b></a>
+                            </label>
+                        </div>
+                        <div id="VERIFYaccount"></div>
+                        <div id="contenido_wrong"></div>
+                        <br />
+
+                        <center>
+                            <div class='row'>
+                                <button type='button' name='btn_login' onclick='ingresar()'
+                                    class='col s12 btn btn-large waves-effect green darken-3'>Login</button>
+                            </div>
+                        </center>
+                    </div>
+                </div>
+            </div>
+
+            <a role="button" class="createNew" role="button" style="cursor:pointer;" onclick="NewAccount();">Create
+                account</a>
+        </center>
+    </main>
+    <!-- js de autenticación -->
+    <script src="./assets/js/AUTH.js "></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./assets/js/modalWindow.js "></script>
+    <script src="./assets/js/toast.min.js"></script>
+
+    <script>
+        function NewAccount() {
+            var window = new ModalWindow(`
+
+            <div class="modal-content" id="ModalCreate">
+                <div class="z-depth-1 grey lighten-4 row"
+                    style="display: inline-block; padding: 32px 22px 32px 22px; border: 1px solid #EEE; margin: 0.8rem;">
+
+                    <div class="col s12">
+                        
+                        <div class='row'>
+                            <div class='input-field col s12'>
+                                <input class='validate' type='text' name='name' id='name' />
+                                <label for='name'>Enter your name</label>
+                            </div>
+                            <label style='float: right;'>
+                                <p class='gray-text'>It could be your nickname too</p>
+                            </label>
+                        </div>
+
+                        <div class='row'>
+                            <div class='input-field col s12'>
+                                <input class='validate' type='email' name='email' id='email' />
+                                <label for='email'>Enter your email</label>
+                            </div>
+                            <label style='float: right;'>
+                                <p class='gray-text'>It will be your user</p>
+                            </label>
+                        </div>
+
+                        <div class='row'>
+                            <div class='input-field col s12'>
+                                <input class='validate' type='password' name='password' id='password' />
+                                <label for='password'>Enter your password</label>
+                            </div>
+                            <label style='float: right;'>
+                                <p class='gray-text'>Must has more than 6 characters</p>
+                            </label>
+                        </div>
+
+                        <br />
+                        <center>
+                            <div class='row'>
+                                <button type='button' name='btn_login' onclick='registrar()'
+                                    class='col s12 btn btn-large waves-effect green darken-3'>Create account</button>
+                            </div>
+                            <a role="button" id="cancelButton" onclick="$( "#modal-overlay" ).click();" style="cursor:pointer;" class="createNew red-text" >Cancel</a>
+
+                        </center>
+                    </div>
+                </div>
+            </div>
+
+                `);
+        }
+
+        function modalForgotPassword() {
+            var window = new ModalWindow(`
+
+            <div class="modal-content" id="ModalForgotPassword">
+                <div class="z-depth-1 grey lighten-4 row"
+                    style="display: inline-block; padding: 32px 22px 32px 22px; border: 1px solid #EEE; margin: 0.8rem;">
+
+                    <div class="col s12">
+
+                        <div class='row'>
+                            <div class='input-field col s12'>
+                                <input class='validate' type='email' name='email' id='forgotEmail' />
+                                <label for='email'>Enter your email</label>
+                            </div>
+                        </div>
+
+                        <br />
+                        <center>
+                            <div class='row'>
+                                <button type='button' name='btn_login' onclick='forgotPassword()'
+                                    class='col s12 btn btn-large waves-effect green darken-3'>Send</button>
+                            </div>
+
+                        </center>
+                    </div>
+                </div>
+            </div>
+
+                `);
+        }
+    </script>
+
+</body>
+
+</html>

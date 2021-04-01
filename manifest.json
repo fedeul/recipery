@@ -1,0 +1,34 @@
+{
+    "short_name": "Recipery",
+    "name": "Recipery",
+    "dir": "ltr",
+    "lang": "en-US",
+    "icons": [
+        {
+            "src": "./assets/img/apple-touch-icon.png",
+            "type": "image/png",
+            "sizes": "180x180"
+        },
+        {
+            "src": "./assets/img/apple-touch-icon@2x.png",
+            "type": "image/png",
+            "sizes": "360x360"
+        },
+        {
+            "src": "./assets/img/apple-touch-icon@3x.png",
+            "type": "image/png",
+            "sizes": "540x540"
+        }
+    ],
+    "start_url": "./yourRecipery.html?launcher=true",
+    "background_color": "#000000",
+    "theme_color": "#2e7d32",
+    "orientation": "portrait-primary",
+    "display": "standalone",
+    "prefer_related_applications": false,
+    "related_applications": [
+        {
+            "platform": "web"
+        }
+    ]
+}
