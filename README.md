@@ -1,6 +1,6 @@
 # RECIPERY
 
-RECIPERY is a recipe gallery, a Progessive Web App, and a project that I enjoyed a lot doing it.
+RECIPERY is a recipe gallery, a Progressive Web App, and a project that I enjoyed a lot doing it.
 
 ### Visit my portfolio: [El Diletante](https://www.eldiletante.com.ar/design.php)
 
